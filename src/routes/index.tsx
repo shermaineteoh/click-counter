@@ -1,24 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Tap Counter" },
+      { name: "description", content: "Tap the round button to count up by one." },
+      { property: "og:title", content: "Tap Counter" },
+      { property: "og:description", content: "Tap the round button to count up by one." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [count, setCount] = useState(0);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center gap-10 bg-background">
+      <p className="text-7xl font-bold tabular-nums text-foreground" aria-live="polite">
+        {count}
+      </p>
+      <button
+        onClick={() => setCount((c) => c + 1)}
+        aria-label="Increment"
+        className="h-40 w-40 rounded-full bg-primary text-2xl font-semibold text-primary-foreground shadow-xl transition-transform hover:scale-105 active:scale-95"
+      >
+        Tap
+      </button>
+    </main>
   );
 }
