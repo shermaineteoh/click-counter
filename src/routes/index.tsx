@@ -25,7 +25,7 @@ function Index() {
       <button
         onClick={() => setCount((c) => c + 1)}
         aria-label="Increment"
-        className="h-40 w-40 rounded-full bg-primary text-2xl font-semibold text-primary-foreground shadow-xl transition-transform hover:scale-105 active:scale-95"
+        className="h-40 w-40 rounded-full bg-button text-2xl font-semibold text-button-foreground shadow-xl transition-transform hover:scale-105 active:scale-95"
       >
         Tap
       </button>
