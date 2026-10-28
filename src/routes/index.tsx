@@ -5,9 +5,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Tap Counter" },
-      { name: "description", content: "Tap the round button to count up by one." },
+      { name: "description", content: "Tap the round button to count up by one, or reset back to zero." },
       { property: "og:title", content: "Tap Counter" },
-      { property: "og:description", content: "Tap the round button to count up by one." },
+      { property: "og:description", content: "Tap the round button to count up by one, or reset back to zero." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -28,6 +28,14 @@ function Index() {
         className="h-40 w-40 rounded-full bg-primary text-2xl font-semibold text-primary-foreground shadow-xl transition-transform hover:scale-105 active:scale-95"
       >
         Tap
+      </button>
+      <button
+        onClick={() => setCount(0)}
+        disabled={count === 0}
+        aria-label="Reset counter"
+        className="rounded-full border border-input bg-background px-6 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        Reset
       </button>
     </main>
   );
